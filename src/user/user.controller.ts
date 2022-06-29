@@ -15,6 +15,7 @@ export class UserController {
   constructor(
     @Inject('ALPHIN_MICROSERVICE') private readonly client: ClientProxy,
   ) {}
+
   @Post()
   create(@Body() payload) {
     return this.client.send('createUser', payload);
@@ -29,6 +30,7 @@ export class UserController {
   findOne(@Param('id') id) {
     return this.client.send('findOneUser', id);
   }
+
   @Patch(':id')
   async updateByAdmin(@Param('id') id: string, @Body() updateUserDto) {
     return this.client.send('updateUser', { id, ...updateUserDto });

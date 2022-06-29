@@ -15,6 +15,7 @@ export class CommentController {
   constructor(
     @Inject('ALPHIN_MICROSERVICE') private readonly client: ClientProxy,
   ) {}
+
   @Post()
   create(@Body() payload) {
     return this.client.send('createComment', payload);
@@ -24,10 +25,12 @@ export class CommentController {
   findAll() {
     return this.client.send('findAllComment', {});
   }
+
   @Get('topten-statistics')
   findTopTenStatistics() {
     return this.client.send('topTenStatistics', {});
   }
+
   @Get('user/:id')
   findAllUserComments(@Param('id') id) {
     return this.client.send('findAllUserComments', id);
@@ -37,6 +40,7 @@ export class CommentController {
   findOne(@Param('id') id) {
     return this.client.send('findOneComment', id);
   }
+
   @Patch(':id')
   async updateByAdmin(@Param('id') id: string, @Body() updateCommentDto) {
     return this.client.send('updateComment', { id, ...updateCommentDto });
