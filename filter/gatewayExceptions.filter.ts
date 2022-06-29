@@ -11,10 +11,11 @@ export type ErrorResponseType = {
   message: any;
 };
 export const ERROR = {
-  DATABASE: 'MongoServerError',
-  CAST: 'CastError',
+  DATABASE: 'DATABASE_ERROR',
+  CAST: 'CAST_ERROR',
   VALIDATION: 'ValidationError',
-  BAD_REQUEST: 'BadRequestException',
+  BAD_REQUEST: 'BAD_REQUEST',
+  FORBIDDEN_REQUEST: 'FORBIDDEN_REQUEST',
   ERROR: 'Error',
 };
 @Catch()
@@ -45,6 +46,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
         break;
       case ERROR.VALIDATION:
         httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        break;
+      case ERROR.FORBIDDEN_REQUEST:
+        httpStatus = HttpStatus.FORBIDDEN;
         break;
 
       default:
