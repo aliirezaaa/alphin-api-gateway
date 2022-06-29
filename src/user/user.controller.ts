@@ -13,7 +13,7 @@ import { ClientProxy } from '@nestjs/microservices';
 @Controller('user')
 export class UserController {
   constructor(
-    @Inject('USER_MICROSERVICE') private readonly client: ClientProxy,
+    @Inject('ALPHIN_MICROSERVICE') private readonly client: ClientProxy,
   ) {}
   @Post()
   create(@Body() payload) {
